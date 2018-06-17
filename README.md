@@ -1,4 +1,4 @@
-# new
+# webpack-test
 > webpack test project
 
 ## Build Setup
