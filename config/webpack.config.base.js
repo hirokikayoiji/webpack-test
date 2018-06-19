@@ -40,8 +40,11 @@ targets.forEach(value =>{
     })
     pluginsData.push(htmlPlugin)
 })
-
 pluginsData.push(new webpack.DefinePlugin({'process.env': process.env.NODE_ENV}))
+
+function resolve (dir) {
+    return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
     entry: entris,
@@ -56,6 +59,22 @@ module.exports = {
         alias: {}
     },
     module: {
+        rules: [
+            {
+                test: /\.(js|jsx|ts)$/,
+                enforce: 'pre',
+                use: [
+                  {
+                    options: {
+                        formatter: require('eslint-friendly-formatter'),
+                        eslintPath: require.resolve('eslint'),
+                    },
+                    loader: require.resolve('eslint-loader'),
+                  },
+                ],
+                include: [resolve('src'), resolve('test')],
+            }
+        ]
     },
     plugins: pluginsData,
     node: {
