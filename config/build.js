@@ -1,7 +1,7 @@
 'use strict'
 
 const webpack = require('webpack')
-const webpackConfig = require('../config/webpack.config.prod')
+const webpackConfig = require('./webpack.config.prod')
 
 build()
 
